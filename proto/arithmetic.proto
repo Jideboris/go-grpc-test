@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+service ArithmeticService {
+    rpc Compute(ArithmeticParamsRequest) returns (ArithmeticParamsResponse);
+}
+
+message ArithmeticParamsRequest {
+  int32 param1 = 1;
+  int32 param2 = 2;
+}
+
+message ArithmeticParamsResponse{
+  int32 paramResponse = 1;
+}
+
