@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"grpc-test/pb"
 	"log"
+	"os"
+	"strconv"
 
 	"google.golang.org/grpc"
 )
@@ -20,7 +22,12 @@ func main() {
 	defer cc.Close()
 
 	client := pb.NewArithmeticServiceClient(cc)
-	request := &pb.ArithmeticParamsRequest{Param1: 2,Param2:6}
+	params := os.Args[1:]
+	fmt.Println("params", params)
+	paramOne , _ := strconv.Atoi(params[0])
+	paramTwo , _ := strconv.Atoi(params[1])
+
+	request := &pb.ArithmeticParamsRequest{Param1: int32(paramOne), Param2: int32(paramTwo)}
 
 	resp, err := client.Compute(context.Background(), request)
 	if err != nil {

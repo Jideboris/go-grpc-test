@@ -5,6 +5,7 @@ import (
 	"grpc-test/pb"
 	"log"
 	"net"
+	"fmt"
 
 	"google.golang.org/grpc"
 )
@@ -25,6 +26,7 @@ func main() {
 		panic(err)
 	}
 
+	fmt.Println("Anthony Bborisade server is Ready ...")
 	s := grpc.NewServer()
 	pb.RegisterArithmeticServiceServer(s, &server{})
 	if err := s.Serve(listener); err != nil {
